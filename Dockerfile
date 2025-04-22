@@ -17,3 +17,5 @@ HEALTHCHECK CMD nc -zv localhost 9050 || exit 1
 
 # Set the default command to execute the start script
 CMD ["/start-tor.sh"]
+
+#
