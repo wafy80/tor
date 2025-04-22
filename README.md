@@ -1,3 +1,6 @@
+![Docker Pulls](https://img.shields.io/docker/pulls/wafy80/tor)
+![Docker Image Size](https://img.shields.io/docker/image-size/wafy80/tor)
+![Docker Build](https://github.com/wafy80/tor/actions/workflows/image-build.yml/badge.svg)
 # Tor Proxy Docker Image
 
 ## Overview
