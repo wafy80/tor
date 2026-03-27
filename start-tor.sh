@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Start Privoxy (in background, non blocking)
-privoxy /etc/privoxy/config &
+# Start Privoxy (HTTP proxy -> SOCKS5 forwarder) in background, no-daemon mode for container compatibility
+privoxy --no-daemon /etc/privoxy/config &
 
-# Start Tor
+# Start Tor in background
 tor &
 
 # Get the PID of Tor (main service to monitor)
