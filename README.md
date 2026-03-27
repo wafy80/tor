@@ -36,6 +36,20 @@ curl --socks5-hostname 127.0.0.1:9050 http://check.torproject.org/
 
 This command should indicate that your request is routed through the Tor network.
 
+### HTTP Proxy Support
+
+This image also provides an HTTP proxy via Privoxy on port `8118`, which forwards traffic to the Tor SOCKS5 proxy. This is useful for applications that don't support SOCKS5 natively.
+
+```bash
+# Using the HTTP proxy
+curl --proxy http://127.0.0.1:8118 https://check.torproject.org/
+
+# Docker run with both ports
+docker run -d -p 9050:9050 -p 8118:8118 --name tor-proxy wafy80/tor
+```
+
+⚠️ The HTTP proxy on port 8118 is a simple forwarder to SOCKS5. For DNS leak protection, prefer --socks5-hostname when possible, or ensure your client resolves hostnames remotely.
+
 ## Healthcheck
 The Docker image includes a healthcheck that verifies the Tor service is running correctly. The healthcheck is configured as follows:
 - **Interval**: Every 30 seconds.
