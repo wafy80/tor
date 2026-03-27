@@ -8,9 +8,11 @@ COPY start-tor.sh /start-tor.sh
 RUN chmod +x start-tor.sh ; \
  apt update && apt install -y tor privoxy netcat-traditional && apt clean ; \
  echo "SocksPort 0.0.0.0:9050" >> /etc/tor/torrc ; \
- sed -i 's/^#*listen-address.*/listen-address 0.0.0.0:8118/' /etc/privoxy/config ; \
- echo "forward-socks5 / 127.0.0.1:9050 ." >> /etc/privoxy/config ; \
- echo "debug 0" >> /etc/privoxy/config
+ cat > /etc/privoxy/config <<'EOF'
+listen-address 0.0.0.0:8118
+forward-socks5 / 127.0.0.1:9050 .
+debug 0
+EOF
 
 # Expose the Tor SOCKS proxy port and Privoxy HTTP proxy port
 EXPOSE 9050 8118
